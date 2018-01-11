@@ -1,10 +1,19 @@
 package com.yishi;
 
 
+import com.yishi.construct.Connector;
+import com.yishi.construct.Service;
+import com.yishi.simple.instance.SimpleConnector;
 import com.yishi.simple.instance.SimpleServer;
+import com.yishi.simple.instance.SimpleService;
 
 public class MainClass {
     public static void main(String[] args) {
-        new SimpleServer().start();
+        SimpleServer server= new SimpleServer();
+        SimpleConnector connector=new SimpleConnector();
+        SimpleService service=new SimpleService();
+        service.setConnectors(new Connector[]{connector});
+        server.setService(new Service[]{service});
+        connector.init();
     }
 }
