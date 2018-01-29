@@ -1,0 +1,10 @@
+@author yishi
+@desc 策略模式if else 替换为多个类
+    if(condition){
+        do something
+    }esle{
+        do something
+    }
+替换为
+    getStrategy(condition).execute();
+以此达到代码复用的目的，并且新加策略不需要更改原有代码

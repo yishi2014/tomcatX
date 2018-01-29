@@ -1,4 +1,4 @@
-package com.yishi.design.pattern.composite;
+package com.yishi.design.pattern.interpreter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,27 +8,24 @@ public class Directory extends AbstractFile {
     public Directory(String name){
         setName(name);
     }
-    private List<File> list=new ArrayList<>();
+    private List<Expression> list=new ArrayList<>();
     @Override
-    public void remove(File file) {
+    public void remove(Expression file) {
         this.list.remove(file);
     }
 
     @Override
-    public void add(File file) {
+    public void add(Expression file) {
         this.getChild().add(file);
         file.setParent(this);
     }
 
     @Override
-    public List<File> getChild() {
+    public List<Expression> getChild() {
         return this.list;
     }
 
-    @Override
-    public void print() {
-        System.out.println(this.getPath());
-    }
+
 
     @Override
     public void execute(Consumer consumer) {
@@ -36,4 +33,8 @@ public class Directory extends AbstractFile {
         this.getChild().stream().forEach(e->e.execute(consumer));
     }
 
+    @Override
+    public int getVal() {
+        return 0;
+    }
 }
