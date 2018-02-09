@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>票据</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+
+
+        @media screen, print {
+            @page {
+                size: 190mm 101.6mm ;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                color: black;
+                font-size: 12px;
+            }
+
+            h4, .footTips {
+                font-family: 'KaiTi';
+                white-space: nowrap;
+            }
+
+            h4 {
+                margin: 11mm 0 2mm 0;
+            }
+
+            .footTips {
+                font-size: 10px;
+                width: 152mm;
+                margin: 0 auto;
+                font-family: KaiTi
+            }
+
+            .mainWrap {
+                position: relative;
+                width: 152mm;
+                font-family: 'SimSun';
+                margin: auto
+            }
+
+            .mainWrap .rightTxt {
+                position: absolute;
+                right: -40px;
+                top: 50%;
+                width: 30px;
+                margin-top: -80px;
+            }
+
+            .tableBox > div {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .payer {
+                border: none;
+                width: 26mm;
+                height: 9mm;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 9mm;
+
+            }
+
+            .payerName {
+                color: black;
+                border-top: none;
+                border-right: none;
+                border-left: 1px solid #D5A8EF;
+                width: 124mm;
+                height: 9mm;
+                text-align: left;
+                line-height: 9mm;
+                vertical-align: middle;
+                padding: 0;
+                margin: 0;
+            }
+
+            .detail {
+                height: 45mm;
+                width: 151mm;
+                padding-top: 2mm;
+                line-height: 5mm;
+                max-height: 45mm;
+                overflow: visible;
+                border-top: 1px solid #D5A8EF;
+                border-bottom: 1px solid #D5A8EF;
+                color: black;
+                float: left;
+            }
+
+            .detail span {
+                white-space: nowrap;
+            }
+
+            .detail div {
+                margin: 0;
+                padding: 0;
+            }
+
+            .tableBox {
+                margin-bottom: 5px;
+                width: 152mm;
+                height: 64mm;
+                border: 2px solid #D5A8EF;
+            }
+
+            .tf_a {
+                width: 37.5mm;
+
+            }
+
+            .tf_b {
+                border-left: 1px solid #D5A8EF;
+                border-right: 1px solid #D5A8EF;
+                width: 49.5mm;
+                color: black;
+
+            }
+
+            .tf_c {
+                width: 35mm;
+                border-right: 1px solid #D5A8EF;
+
+            }
+
+            .tf_d {
+                width: 25mm;
+                color: black;
+
+                /*background: #000000;*/
+
+            }
+
+            .foot {
+                line-height: 9mm;
+                height: 9mm;
+                padding: 0;
+                margin: 0;
+
+            }
+
+            .container-fluid {
+                width: 190mm;
+            }
+
+            .total {
+                position: absolute;
+                bottom: 11mm;
+                width: 100%;
+                color: black;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <h4 class="text-center" style="color:#C889ED">浙江省政府非税收入通用票据 （ 电 子 ）</h4>
+    <div class="mainWrap">
+        <div class="row">
+            <div class="col-xs-4" style="white-space: nowrap">&nbsp;<br><span style="color:#C889ED">执收单位代码:</span>
+                ${单位编码}
+            </div>
+            <div class="col-xs-4">&nbsp;<br>${年}<span style="color:#C889ED">年</span> ${月}<span
+                    style="color:#C889ED">月</span> ${日}<span style="color:#C889ED">日</span></div>
+            <div class="col-xs-4"><span style="color:#C889ED">票据代码: ${票据代码} </span><br><span
+                    style="color:#C889ED">票据号码: </span>${票据号码}
+            </div>
+        </div>
+        <!--<div class="rightTxt">第一联<br><br>收据联</div>-->
+        <div class="tableBox clearfix">
+            <div class="col-xs-2 payer" style="color:#C889ED">付款人</div>
+            <div class="col-xs-10 payerName" style="text-align: left;
+				padding-left:2mm;">${付款人}
+            </div>
+            <div class=" detail clearfix">
+                <div class="col-xs-2">
+                    <span>执收码</span><br>
+                    ${执收码0}<br>
+                    ${执收码1}<br>
+                    ${执收码2}<br>
+                    ${执收码3}<br>
+                    ${执收码4}<br>
+                </div>
+                <div class="col-xs-3">
+                    <span>执收码名称</span><br>
+                    ${执收项目名称0}<br>
+                    ${执收项目名称1}<br>
+                    ${执收项目名称2}<br>
+                    ${执收项目名称3}<br>
+                    ${执收项目名称4}<br>
+                </div>
+                <div class="col-xs-2">
+                    <span>计量单位</span><br>
+
+
+                </div>
+                <div class="col-xs-1">
+                    <span>数量</span><br>
+                    ${数量0}<br>
+                    ${数量1}<br>
+                    ${数量2}<br>
+                    ${数量3}<br>
+                    ${数量4}<br>
+
+                </div>
+                <div class="col-xs-2 de">
+                    <span>标准</span><br>
+                    ${标准0}<br>
+                    ${标准1}<br>
+                    ${标准2}<br>
+                    ${标准3}<br>
+                    ${标准4}<br>
+
+                </div>
+                <div class="col-xs-2">
+                    <span>金额</span><br>
+                    ${金额0}<br>
+                    ${金额1}<br>
+                    ${金额2}<br>
+                    ${金额3}<br>
+                    ${金额4}<br>
+                </div>
+
+            </div>
+            <div class="col-xs-3 tf_a foot" style="color:#C889ED">收款单位（盖章）</div>
+            <div class="col-xs-3 tf_b foot">${执收单位}</div>
+            <div class="col-xs-3 tf_c foot" style="color:#C889ED">经&emsp;办&emsp;人</div>
+            <div class="col-xs-3 tf_d foot" style="text-align: left;
+				padding-left:2mm;"></div>
+        </div>
+        <div class="text-center total">
+            合计金额：&emsp;${合计金额}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            小写合计：&emsp;${小写金额}
+        </div>
+    </div>
+    <p class="footTips" style="color:#C889ED">&nbsp;注：本票据手工填写无效。</p>
+</div>
+</body>
+</html>
