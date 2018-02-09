@@ -15,7 +15,7 @@ public class Test {
         subDir.execute(File::print);
 //        System.out.println("--remove text2");
 //        subDir.remove(text2);
-//        dir.execute(File::print);
+        dir.execute(File::print);
 
     }
 
