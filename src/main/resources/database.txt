@@ -1,0 +1,25 @@
+数据库加锁
+DML：
+    1.对表加共享锁，防止其他事务执行ddl
+    2.对特定行数据加排他锁，防止其他事务修改该数据
+共享锁上可以加共享锁，但不能加排他锁
+排他锁上不能再加锁
+
+查找锁定
+6.查找锁的SID和被锁的SQL
+如果发生了锁等待，我们可能更想知道是谁锁了表而引起谁的等待
+以下的语句可以查询到谁锁了表，而谁在等待。
+结果第一行表示产生锁的，子节点表示被锁的
+
+SQL> SELECT /*+ rule */ lpad(' ',decode(l.xidusn ,0,3,0))||l.oracle_username
+  2  User_name,s.sid,s.sql_id,
+  3  o.owner,o.object_name,o.object_type,s.sid,s.serial#
+  4  FROM v$locked_object l,dba_objects o,v$session s
+  5  WHERE l.object_id=o.object_id
+  6  AND l.session_id=s.sid
+  7  ORDER BY o.object_id,xidusn DESC;
+
+USER_NAME   SID SQL_ID        OWNER      OBJECT_NAM OBJECT_TYP  SID    SERIAL#
+---------- ---- ------------- ---------- ---------- ---------- ---- ----------
+SYS          16 a18zt89tq6c0s SCOTT      EMP        TABLE        16        751
+   BIDPRO   202 3f06gzyfyg1xj SCOTT      EMP        TABLE       202        793
