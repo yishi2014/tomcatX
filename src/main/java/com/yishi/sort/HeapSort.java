@@ -80,6 +80,8 @@ public class HeapSort {
 
         heapSort(arr);
         System.out.println(Arrays.toString(arr));
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 }

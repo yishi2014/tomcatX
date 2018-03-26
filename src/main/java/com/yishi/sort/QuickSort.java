@@ -45,6 +45,7 @@ public class QuickSort {
         for(int i=0;i<capacity;i++){
             arr[i]=random.nextInt(100);
         }
+        System.out.println(Arrays.toString(arr));
         quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
         Arrays.sort(arr);

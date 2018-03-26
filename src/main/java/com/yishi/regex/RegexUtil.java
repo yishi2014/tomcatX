@@ -34,14 +34,14 @@ public class RegexUtil {
 
     }
     public static void main(String[] args) throws IOException {
-//        System.out.println(addHeadSymbol("abc","a"));
-//        System.out.println(addEndSymbol("bca","a"));
-//        System.out.println(formateDir("/a\\b/c"));
-//        System.out.println(formateDir("\\a/b\\c"));
+        System.out.println(addHeadSymbol("abc","a"));
+        System.out.println(addEndSymbol("bca","a"));
+        System.out.println(formateDir("/a\\b/c"));
+        System.out.println(formateDir("\\a/b\\c"));
 
 //        System.out.println(new ClassPathResource("/billTemplate/bootstrap.min.css").getFile().getAbsolutePath());
-        String baseUri=new ClassPathResource("billTemplate").getFile().getAbsolutePath();
-        System.out.println(baseUri);
+//        String baseUri=new ClassPathResource("billTemplate").getFile().getAbsolutePath();
+//        System.out.println(baseUri);
 
     }
     public static String addHeadSymbol(String str,String headIfNotHave){
