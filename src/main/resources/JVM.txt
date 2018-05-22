@@ -1,0 +1,20 @@
+触发fullgc的情况
+1.调用syste.gc()可以增大jvm进行fullgc的概率;
+2.eden新建对象过大需要直接进入old space，而此时old space空间不足，此时触发fullgc;
+3.方法区(Perm Gen/meta space)空间不足，在未使用CMS(Current Mark Sweep)收集器时会触发fullgc;
+4.eden对象进入survivor space时,survivor space空间不足，此时只能将这些对象放入old space,old space 空间不足，触发fullgc;
+5.survivor space中的对象年龄大于阈值将进入old space 此时old space空间不足，触发fullgc；
+6.统计得到的Minor GC晋升到old space的平均大小大于当前old space的剩余空间,触发fullgc;
+7.jmap -histo统计对象数量会先出发jvmFullGC
+
+
+
+逃逸分析：就是判断对象的作用域是否有可能逃逸出函数体
+
+
+字节码
+    store:operand stack->local variable stack
+    load: local variable stack->operand stack
+    const:->operand stack
+    dup:operand stack->operand stack
+

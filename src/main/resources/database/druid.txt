@@ -1,0 +1,10 @@
+druid ast demo
+String sql = "select user from emp_table";
+String sql1 = "select 1,2,3, user_id from users where user_id = 1 and if((select user_id from users where user_id = 2), 1,1)";
+String dbType = JdbcConstants.MYSQL;
+List<SQLStatement> stmtList = SQLUtils.parseStatements(sql, dbType);
+SQLStatement stmt = stmtList.get(0);
+MySqlSchemaStatVisitor visitor = new MySqlSchemaStatVisitor();
+
+stmt.accept(visitor);
+JSON.toJSONString(visitor)

@@ -1,0 +1,53 @@
+查询列信息
+SELECT  NULL AS table_cat,
+        t.owner AS table_schem,
+        t.table_name AS table_name,
+        t.column_name AS column_name,
+        DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,
+                'LONG', -1, 'DATE', 93, 'RAW', -3, 'LONG RAW', -4,
+                'BLOB', 2004, 'CLOB', 2005, 'BFILE', -13, 'FLOAT', 6,
+                'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101,
+                'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102,
+                'INTERVAL YEAR(2) TO MONTH', -103,
+                'INTERVAL DAY(2) TO SECOND(6)', -104,
+                'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,
+                1111)
+          AS data_type,
+        t.data_type AS type_name,
+        DECODE (t.data_precision, null,          DECODE (t.data_type, 'CHAR', t.char_length,                   'VARCHAR', t.char_length,                   'VARCHAR2', t.char_length,                   'NVARCHAR2', t.char_length,                   'NCHAR', t.char_length,           t.data_length),         t.data_precision)
+          AS column_size,
+        0 AS buffer_length,
+        t.data_scale AS decimal_digits,
+        10 AS num_prec_radix,
+        DECODE (t.nullable, 'N', 0, 1) AS nullable,
+        c.comments AS remarks,
+        t.data_default AS column_def,
+        0 AS sql_data_type,
+        0 AS sql_datetime_sub,
+        t.data_length AS char_octet_length,
+        t.column_id AS ordinal_position,
+        DECODE (t.nullable, 'N', 'NO', 'YES') AS is_nullable
+FROM all_tab_columns t, all_col_comments c
+WHERE t.owner LIKE :1 ESCAPE '/'
+AND t.table_name LIKE :2 ESCAPE '/'
+AND t.column_name LIKE :3 ESCAPE '/'
+AND t.owner = c.owner (+)
+AND t.table_name = c.table_name (+)
+AND t.column_name = c.column_name (+)
+
+ORDER BY table_schem, table_name, ordinal_position;
+查询主键信息
+SELECT NULL AS table_cat,
+       c.owner AS table_schem,
+  c.table_name,
+  c.column_name,
+       c.position AS key_seq,
+       c.constraint_name AS pk_name
+FROM all_cons_columns c, all_constraints k
+WHERE k.constraint_type = 'P'
+      AND k.table_name = :1
+AND k.owner like :2 escape '/'
+AND k.constraint_name = c.constraint_name
+AND k.table_name = c.table_name
+AND k.owner = c.owner
+ORDER BY column_name

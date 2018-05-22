@@ -1,0 +1,2 @@
+jpa转换数据库字段规则
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

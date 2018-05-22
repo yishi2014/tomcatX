@@ -1,0 +1,13 @@
+部分 part
+range:
+表示头500个字节：bytes=0-499
+表示第二个500字节：bytes=500-999
+表示最后500个字节：bytes=-500
+表示500字节以后的范围：bytes=500-
+第一个和最后一个字节：bytes=0-0,-1
+同时指定几个范围：bytes=500-600,601-999
+但是服务器可以忽略此请求头，如果无条件GET包含Range请求头，响应会以状态码206（PartialContent）返回而不是以200（OK）。
+
+下载 download
+设置文件名
+response.setHeader("Content-Disposition","attachment; filename*=UTF-8''" + URLEncoder.encode(fileName,"utf-8"));

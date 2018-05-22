@@ -1,0 +1,4 @@
+注释console.log
+    ^(?!//)(\s*console\.log.*)   //$1
+选中未注释的 System.out.print
+^\s*(?<!\s*//\s*)(System\.out\.println.*)
