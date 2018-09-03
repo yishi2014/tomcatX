@@ -1,13 +1,10 @@
 package com.yishi.html.CommonTableFillData;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
 
 import java.io.*;
 import java.util.Map;
-import java.util.concurrent.TransferQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
