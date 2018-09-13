@@ -182,6 +182,12 @@
             <artifactId>text</artifactId>
             <version>3.3.0-v20070606-0010</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/ideauidesigner-maven-plugin -->
+        <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>ideauidesigner-maven-plugin</artifactId>
+            <version>1.0-beta-1</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/javazoom/jlayer -->
         <dependency>
@@ -192,5 +198,6 @@
 
 
     </dependencies>
+
 
 </project>

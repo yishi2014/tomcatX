@@ -16,11 +16,12 @@ public class A {
 //
 //        System.out.format("%32s%n", Integer.toBinaryString(9));
 //        System.out.format("%32s%n", Integer.toBinaryString(-9));
-//        System.out.println(reverse(-9));
-//        System.out.println(reverse(9));
+        System.out.println(reverse(Integer.MIN_VALUE));
+        System.out.println(Integer.MIN_VALUE*-1);
+        System.out.println(reverse(9));
         System.out.println(0x7fffffff+1);
     }
-
+    //取反加一
     public static int reverse(int x) {
         return ~x + 1;
     }

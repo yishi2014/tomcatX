@@ -1,13 +1,10 @@
 package com.yishi.regex;
 
-import org.springframework.core.io.ClassPathResource;
-
 import java.io.File;
 import java.io.IOException;
 
 /**
- * @author yishi
- * @desc a regex util to process str
+ * Created by Lustin on 2017/11/21.
  */
 public class RegexUtil {
 
@@ -34,13 +31,14 @@ public class RegexUtil {
 
     }
     public static void main(String[] args) throws IOException {
-        System.out.println(addHeadSymbol("abc","a"));
-        System.out.println(addEndSymbol("bca","a"));
-        System.out.println(formateDir("/a\\b/c"));
-        System.out.println(formateDir("\\a/b\\c"));
-
+//        System.out.println(addHeadSymbol("abc","a"));
+//        System.out.println(addEndSymbol("bca","a"));
+//        System.out.println(formateDir("/a\\b/c"));
+//        System.out.println(formateDir("\\a/b\\c"));
+//        System.out.println(getLargestDir("/home/yishi/IDEA/code_generator/src/main/java/com/datanew/code/general/demo/controller/AuthorizeApplyController.java"));
 //        System.out.println(new ClassPathResource("/billTemplate/bootstrap.min.css").getFile().getAbsolutePath());
 //        String baseUri=new ClassPathResource("billTemplate").getFile().getAbsolutePath();
+        System.out.println(toCamel1Low("get_"+"FILL_RULE_CODE"));
 //        System.out.println(baseUri);
 
     }
@@ -60,4 +58,43 @@ public class RegexUtil {
             return str+endIfNotHave;
         return str;
     }
+    public static String getLargestDir(String str){
+        return str.replaceAll("[^/\\\\]+\\.[^/\\\\]+$","");
+    }
+    public static String toCamel(String str){
+        str=str.toLowerCase();
+        String[] strs=str.split("_");
+        String returnStr="";
+        for(String s:strs){
+            char[] chars=s.toCharArray();
+            chars[0]^=32;
+            returnStr+=new String(chars);
+        }
+
+        return new String(returnStr);
+
+    }
+    public static String toCamel1Low(String str){
+        str=str.toLowerCase();
+        String[] strs=str.split("_");
+        String returnStr="";
+        for(int i=0;i<strs.length;i++){
+            char[] chars=strs[i].toCharArray();
+            if(i>0)
+                chars[0]^=32;
+            returnStr+=new String(chars);
+        }
+
+        return new String(returnStr);
+
+    }
+    public static String getSimpleNameFromQualifyName(String qualifyName){
+        return qualifyName.replaceAll("^(.+\\.)(.+)$","$2");
+    }
+    public static String firstToLower(String str){
+        char[] chars=str.toCharArray();
+        chars[0]^=32;
+        return new String(chars);
+    }
+
 }

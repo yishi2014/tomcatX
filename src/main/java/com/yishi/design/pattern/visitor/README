@@ -1,0 +1,2 @@
+@author yishi
+@desc 访问者模式为Element对象提供了一个传递Visitor对象的接口,而visitor接口又可以访问Element对象，相当于抽象化了访问Element对象的逻辑，由实现visitor接口的对象自由实现

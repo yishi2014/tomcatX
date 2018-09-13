@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 
 public class Unicode2PinYin {
     static List<String> list=new ArrayList<>();
+    static Map<Integer,String> map=new HashMap<>();
 
     public static void main(String[] args) throws IOException {
         try(BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(new ClassPathResource("Uni2Pinyin").getFile()),"utf-8"))){
@@ -21,28 +23,33 @@ public class Unicode2PinYin {
 //            new Scanner(System.in).nextLine();
             while((line=br.readLine())!=null){
                 if(!line.startsWith("#")&&line.length()>4){
-                    list.add(line);
+                    list.add(line.substring(0,4));
+                    map.put(new BigInteger(line.substring(0,4),0x10).intValue(),line.substring(5));
                 }
             }
         }
-        System.out.println(getPinyin(0x3008,0,list.size(),0));
+
+        System.out.println(getPinyin("中华人民共和国"));
+//        for(String s:list){
+//            int [] codepoint={new BigInteger(s,0x10).intValue()};
+//            System.out.println(new String(codepoint,0,1)+" "+map.get(s));
+//        }
 
     }
-    public   static String getPinyin(int codepoint,int index0,int index,int direction){//0向左//1向右
-        int pos=index0+((index-index0)>>1);
-        String s=list.get(pos);
-        String codeStr=s.substring(0,4);
-        int curPoint=new BigInteger(codeStr,16).intValue();
-        if(curPoint>codepoint){
-            index>>=1;
-            return getPinyin(codepoint,index0,pos,0);
-        }else if(curPoint<codepoint){
-            index<<=1;
-            return getPinyin(codepoint,pos,index,1);
-        }else{
-            return codeStr;
-        }
+    public   static String getPinyin(String Str){
+        String re="";
+        for(int i=0;i<Str.codePointCount(0,Str.length());i++){
+            Integer code=Str.codePointAt(i);
+            if(map.get(code)!=null){
+                re+=map.get(code);
 
+            }else {
+                int[] codes={Str.codePointAt(i)};
+                re+=new String();
+            }
+
+        }
+        return re;
     }
 
 //    public static int[] range = {
