@@ -1,0 +1,7 @@
+dom4j 不解析dtd
+SAXReader reader =new SAXReader();
+reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+jaxb不解析dtd
+XMLInputFactory xif = XMLInputFactory.newFactory();
+xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
