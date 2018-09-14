@@ -5,6 +5,10 @@ import org.dom4j.DocumentException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -148,6 +152,31 @@ public class JAXBXmlParser {
             JAXBContext context = JAXBContext.newInstance(c);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             t = (T) unmarshaller.unmarshal(new StringReader(xml));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return t;
+    }
+
+    /**
+     * xmlFile转换成JavaBean
+     * @param file
+     * @param c
+     * @return
+     */
+    public static <T> T converyFileToJavaBean(File file, Class<T> c) {
+        T t = null;
+        try {
+            if (file==null) return t;
+            JAXBContext context = JAXBContext.newInstance(c);
+
+            XMLInputFactory xif = XMLInputFactory.newFactory();
+//            xif.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+            xif.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+            XMLStreamReader xsr = xif.createXMLStreamReader(new FileReader(file));
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            t = (T) unmarshaller.unmarshal(xsr);
         } catch (Exception e) {
             e.printStackTrace();
         }
