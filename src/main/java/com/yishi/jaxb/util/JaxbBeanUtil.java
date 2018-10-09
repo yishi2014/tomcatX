@@ -2,22 +2,39 @@ package com.yishi.jaxb.util;
 
 import com.yishi.regex.RegexUtil;
 import org.dom4j.*;
+import org.dom4j.io.SAXReader;
 
 import java.io.*;
 import java.util.*;
 
 public class JaxbBeanUtil {
-    private static String pkg = "com.yishi.jaxb.special.project.config";
-    private static String path = "/home/yishi/IDEA/budgetX/src/test/";
-    private static String filerootPath = path + com.yishi.regex.RegexUtil.formateduplicateChar(pkg, ".", "/")+"/";
+    private static String pkg = "com.datanew.jaxb.special";
+    private static String path = "C:\\IDEA\\budgetMaven\\src\\test\\java\\";
+    private static String filerootPath = path + com.yishi.regex.RegexUtil.formateduplicateChar(pkg, ".", "/") + "/";
 
-    public static void main(String[] args) throws DocumentException, IOException {
-        Document doc = DocumentHelper.parseText(xml);
+    public static void main(String[] args) throws Exception {
+//        Document doc = DocumentHelper.parseText(xml);
+//        Document doc = getDoc("C:\\IDEA\\budgetMaven\\src\\test\\resources\\entityMapping.xml");
+        Document doc = DocumentHelper.parseText("<composite-id name=\"id\" class=\"com.datanew.ysbz.entity.AccountsectionslistId\">\n" +
+                "\t\t\t<key-property name=\"year\" type=\"java.lang.Long\">\n" +
+                "\t\t\t\t<column name=\"YEAR\" />\n" +
+                "\t\t\t</key-property>\n" +
+                "\t\t\t<key-property name=\"id\" type=\"java.lang.String\">\n" +
+                "\t\t\t\t<column name=\"SID\" length=\"42\" />\n" +
+                "\t\t\t</key-property>\n" +
+                "\t\t</composite-id>");
         Element root = doc.getRootElement();
 //        System.out.println(root.asXML());
-        String name = "ProjectConfig";
+        String name = "HibernateMappingClassCompositeId";
         parse(root, name);
+    }
 
+    public static Document getDoc(String str) throws Exception {
+        File file = new File(str);
+        SAXReader reader = new SAXReader();
+        reader.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        Document document = reader.read(file);
+        return document;
 
     }
 
@@ -49,7 +66,7 @@ public class JaxbBeanUtil {
                 stringBuilder.append("    @XmlElement(name=\"" + elementName + "\")").append("\n");
                 String typeName = name + getType(elementName);
                 stringBuilder.append(typeParse(pobj, typeName));
-                if (!pobj.isProcessed() && (pobj.isHasChildren() || pobj.getAttrs().size() > 0)) {
+                if (!pobj.isProcessed() && (pobj.hasChildren() || pobj.getAttrs().size() > 0)) {
                     parse(e, typeName);
                 }
                 pobj.setProcessed(true);
@@ -63,7 +80,7 @@ public class JaxbBeanUtil {
         stringBuilder.append("}");
         System.out.println("--------------------------------------------------");
         try (
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(filerootPath + name+".java")), "utf-8"))
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(filerootPath + name + ".java")), "utf-8"))
         ) {
             bw.write(stringBuilder.toString());
         }
@@ -73,7 +90,7 @@ public class JaxbBeanUtil {
     public static String typeParse(ProcessObj pobj, String typeName) {
         String elementName = getField(pobj.getName());
         if (pobj.getCount() == 1 && pobj.getAttrs().size() == 0) {
-            if (pobj.isHasChildren()) {
+            if (pobj.hasChildren()) {
                 return "    private " + typeName + " " + RegexUtil.firstToLower(typeName) + ";\n";
             } else {
 
@@ -83,7 +100,7 @@ public class JaxbBeanUtil {
         } else if (pobj.getCount() == 1) {
             return "    private " + typeName + " " + RegexUtil.firstToLower(typeName) + ";\n";
         } else if (pobj.getAttrs().size() == 0) {
-            if (pobj.isHasChildren()) {
+            if (pobj.hasChildren()) {
                 return "    private List<" + typeName + "> " + elementName + "List;\n";
             } else {
                 return "    private List<String> " + elementName + "List;\n";
@@ -134,7 +151,7 @@ public class JaxbBeanUtil {
         private Set<String> attrs;
         private boolean hasChildren;
 
-        public boolean isHasChildren() {
+        public boolean hasChildren() {
             return hasChildren;
         }
 

@@ -20,9 +20,9 @@ public class JDT {
 
     }
 
-    public static void main(String[] args) {
-        xx();
-    }
+//    public static void main(String[] args) {
+//        xx();
+//    }
 
     private static String read(FileInputStream fileInputStream, String encode) {
         StringBuffer stringBuffer = new StringBuffer();
@@ -39,9 +39,10 @@ public class JDT {
         return stringBuffer.toString();
     }
 
-    static void xx() {
+    static void xx(String path,String encoding) {
 
-        String content = read("/home/yishi/IDEA/budget_st/JavaSource/www/com/datanew/performance/dao/impl/PerEnterStatusDao.java","gbk");
+//        String content = read("/home/yishi/IDEA/budget_st/JavaSource/www/com/datanew/performance/dao/impl/PerEnterStatusDao.java","gbk");
+        String content = read(path,encoding);
 
         //创建解析器
         ASTParser parsert = ASTParser.newParser(AST.JLS8);

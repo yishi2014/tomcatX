@@ -67,6 +67,7 @@ public class RegexUtil {
         String returnStr="";
         for(String s:strs){
             char[] chars=s.toCharArray();
+            if(chars.length>0)
             chars[0]^=32;
             returnStr+=new String(chars);
         }
@@ -75,17 +76,11 @@ public class RegexUtil {
 
     }
     public static String toCamel1Low(String str){
-        str=str.toLowerCase();
-        String[] strs=str.split("_");
-        String returnStr="";
-        for(int i=0;i<strs.length;i++){
-            char[] chars=strs[i].toCharArray();
-            if(i>0)
-                chars[0]^=32;
-            returnStr+=new String(chars);
-        }
 
-        return new String(returnStr);
+        String str_=toCamel(str);
+        char[]charArr=str_.toCharArray();
+        charArr[0]^=32;
+        return new String(charArr);
 
     }
     public static String getSimpleNameFromQualifyName(String qualifyName){
