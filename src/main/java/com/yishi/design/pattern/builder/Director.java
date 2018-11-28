@@ -1,8 +1,6 @@
 package com.yishi.design.pattern.builder;
 
 
-import java.io.BufferedWriter;
-
 /**
  * 规定了如何调用Builder对象，诸如先后顺序之类的流程
  */

@@ -22,18 +22,17 @@ public class JaxbBeanUtil_ {
 //        collect(map,"/",doc.getRootElement());
 //        map.forEach((a,b)-> System.out.println(b));
 
-        String pkg = "com.datanew.jaxb.special";
-        String path = "C:\\IDEA\\budgetMaven\\src\\test\\java\\";
+        String pkg = "test.parts.jaxb.special.xwork";
+        String path = "C:\\Users\\YiShi\\eclipse-workspace\\test\\src\\";
         String encoding="utf-8";
         String[] entityPath = {
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\generated\\com\\datanew\\ysbz\\entity",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\www\\com\\datanew\\performance\\entity",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\generated\\com\\datanew\\report\\entity",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\src\\com\\datanew\\report\\entity\\baseinfo",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\generated\\com\\datanew\\itemper\\entity",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\www\\com\\datanew\\item\\entity",
-//                "C:\\IDEA\\budgetFill_st\\JavaSource\\www\\com\\datanew\\person\\entity"
-                  "C:\\IDEA\\budgetMaven\\src\\test\\resources\\serviceMapping.xml"
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\item-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\itemPer-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\itemPerGoal-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\performance-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\person-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\report-xwork.xml",
+                "C:\\IDEA\\budget_st\\JavaSource\\www\\ysbz-xwork.xml"
         };
         Map map = batchCollect(entityPath, new HashMap());
 //        List<ElementInfo> list = new ArrayList(Arrays.asList(map.values().toArray()));
@@ -286,7 +285,7 @@ public class JaxbBeanUtil_ {
             return name_+"_";
         return name_;
     }
-    static String[] keywords={"class","package","public","private","protected","for","while","switch","case","new"};
+    static String[] keywords={"class","package","public","private","protected","for","while","switch","case","new","extends","implement"};
 
     public static String getClassName(String path){
         String name= RegexUtil.toCamel(path.replaceAll("-","_").replaceAll("/","_").toLowerCase());
@@ -294,6 +293,7 @@ public class JaxbBeanUtil_ {
     }
 
     public static void writeFile(String content,String path,String encoding){
+        System.out.println(path);
         try(BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path),encoding))){
             bw.write(content);
         }catch (Exception e){
