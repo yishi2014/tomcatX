@@ -11,7 +11,6 @@ public class A {
 //            System.out.print(":");
 //            System.out.println(aa(i));
 //            System.out.println("-----------------------------------");
-//
 //        }
 //
 //        System.out.format("%32s%n", Integer.toBinaryString(9));
@@ -36,7 +35,8 @@ public class A {
     }
 
     //x|(x+1)将x从右到左数遇到的第一的第一个0置为1
-    //若x为偶数 则此操作将得到一个x+1(即2的0次方)
+    //若x为偶数 则此操作将得到一个x+1(即2的0次方)s
+
     //若x为奇数 则x将会增长一个大小为2的n次方的值
     //n的值为从右往左数第一个1的位置（从0开始数）
     //对型如2的n次方减1的值 得到的结果为2的n+1次方减1

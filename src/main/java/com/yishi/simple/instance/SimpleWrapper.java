@@ -3,6 +3,7 @@ package com.yishi.simple.instance;
 import com.yishi.construct.LifeCircle;
 import com.yishi.construct.Wrapper;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 public class SimpleWrapper implements Wrapper,LifeCircle{
@@ -16,7 +17,19 @@ public class SimpleWrapper implements Wrapper,LifeCircle{
         this.servlet = servlet;
     }
 
-    public static void main(String[] args) {
-        System.out.println(1);
+    @Override
+    public void start() {
+        try {
+            if(servlet!=null)
+            servlet.init();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void stop() {
+        if(servlet!=null)
+            servlet.destroy();
     }
 }

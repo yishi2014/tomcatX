@@ -13,9 +13,11 @@ public class BitUtil {
         }
         return INT_BYTES[i];
     }
+
     public static int byte2Int(byte b){
         return b&0xff;
     }
+
     public static byte[] getByteFromStr(String str){
         if(str==null||str.length()==0)
             throw new RuntimeException("not a hex string");
@@ -31,8 +33,9 @@ public class BitUtil {
     //-1:1111 1111
     //1111 1111 1111 1111 1111 1111 1111 1111
     public static void main(String[] args) throws UnsupportedEncodingException {
-        System.out.println(Arrays.toString(getByteFromStr("554a")));
-        System.out.println(new String(getByteFromStr("554a"),"utf-16be"));
+        System.out.println("葸".getBytes("utf16"));
+        System.out.println(Arrays.toString(getByteFromStr("db55dd64")));
+        System.out.println(new String(getByteFromStr("db00dd64"),"utf-16be"));
 //        byte b=INT_BYTES[127];
 //        byte c= (byte) (b+1);
 //        System.out.println(c);

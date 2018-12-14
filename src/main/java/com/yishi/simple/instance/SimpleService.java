@@ -5,7 +5,9 @@ import com.yishi.construct.Container;
 import com.yishi.construct.LifeCircle;
 import com.yishi.construct.Service;
 
-public class SimpleService implements Service,LifeCircle {
+import java.util.Arrays;
+
+public class SimpleService implements Service, LifeCircle {
     private Connector[] connectors;
     private Container container;
 
@@ -23,5 +25,21 @@ public class SimpleService implements Service,LifeCircle {
 
     public void setContainer(Container container) {
         this.container = container;
+    }
+
+    @Override
+    public void start() {
+        if (container != null)
+            container.start();
+        if (connectors != null)
+            Arrays.stream(connectors).forEach(connector -> connector.start());
+    }
+
+    @Override
+    public void stop() {
+        if(container!=null)
+        container.stop();
+        if (connectors != null)
+            Arrays.stream(connectors).forEach(connector -> connector.stop());
     }
 }

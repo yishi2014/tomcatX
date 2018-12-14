@@ -3,6 +3,11 @@ package com.yishi.simple.instance;
 import com.yishi.construct.Connector;
 import com.yishi.construct.Container;
 import com.yishi.construct.LifeCircle;
+import com.yishi.io.IOUtil;
+import org.apache.maven.wagon.util.IoUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import sun.rmi.runtime.Log;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -13,7 +18,9 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SimpleConnector implements Connector, LifeCircle {
+public class SimpleConnector implements Connector {
+    private Logger logger= LoggerFactory.getLogger(SimpleConnector.class);
+    private int port;
     private Container container;
     String encoding="utf-8";
 
@@ -27,22 +34,48 @@ public class SimpleConnector implements Connector, LifeCircle {
     }
 
     public void init() {
+        this.port=8080;
+        if(logger.isDebugEnabled()){
+            logger.debug("init connector:{}",SimpleConnector.class.getName());
+        }
+//        System.out.println("init connector");
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(8080);
+            serverSocket = new ServerSocket(port);
+            if(logger.isDebugEnabled()){
+                logger.debug("binding port on {}",this.port);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         while(true){
             try {
-                Socket socket=serverSocket.accept();
-                String errorMessage = "HTTP/1.1 200 ok\r\nContent-Length:5\r\n\r\nhello123";
-                Pattern pattern=Pattern.compile("(?<=\r\n\r\n)(?<content>.*)");
-                Matcher matcher=pattern.matcher(errorMessage);
-                if(!matcher.hitEnd()&&matcher.find())
-                    System.out.println(matcher.group("content"));
-                socket.getOutputStream().write(errorMessage.getBytes());
+                Socket socket = serverSocket.accept();
+//                String errorMessage = "HTTP/1.1 200 ok\r\nContent-Length:6\r\n\r\nhello123";
+//                Pattern pattern=Pattern.compile("(?<=\r\n\r\n)(?<content>.*)");
+//                Matcher matcher=pattern.matcher(errorMessage);
+//                if(!matcher.hitEnd()&&matcher.find())
+//                    System.out.println(matcher.group("content"));
+                String successStr = "HTTP/1.1 200 ok\r\n\r\n";
+                socket.getOutputStream().write(successStr.getBytes());
+                InputStream in = socket.getInputStream();
+                String content = null;
+                if (in != null && in.available() > 0) {
+                    content = new String(IOUtil.getByteFromStream(socket.getInputStream(), socket.getInputStream().available()));
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("request content:");
+                        logger.debug("\r\n" + content);
+                    }
+                    socket.getOutputStream().write(content.getBytes("utf-8"));
+                }
+//                IOUtil.writeWithBuffer_nonThrow_nonColse(in,socket.getOutputStream());
+
+                socket.getOutputStream().flush();
                 socket.close();
+//                socket.getOutputStream().write("HTTP/1.1 200 ok\r\nContent-Length:5\r\n\r\n".getBytes("utf-8"));
+//                IOUtil.writeWithBuffer_nonThrow_nonColse(socket.getInputStream(),socket.getOutputStream());
+//                socket.getInputStream().close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -296,5 +329,15 @@ public class SimpleConnector implements Connector, LifeCircle {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void start() {
+        init();
+    }
+
+    @Override
+    public void stop() {
+
     }
 }

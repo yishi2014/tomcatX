@@ -1,4 +1,4 @@
-package com.yishi;
+package com.yishi.simple.instance;
 
 
 import com.yishi.construct.Connector;
@@ -14,7 +14,7 @@ public class MainClass {
         SimpleService service=new SimpleService();
         service.setConnectors(new Connector[]{connector});
         server.setService(new Service[]{service});
-        connector.init();
+        server.start();
     }
 
 

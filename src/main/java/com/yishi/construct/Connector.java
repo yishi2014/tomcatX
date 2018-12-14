@@ -1,4 +1,4 @@
 package com.yishi.construct;
 
-public interface Connector {
+public interface Connector extends LifeCircle{
 }

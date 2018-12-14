@@ -1,4 +1,4 @@
 package com.yishi.construct;
 
-public interface Container {
+public interface Container extends LifeCircle{
 }

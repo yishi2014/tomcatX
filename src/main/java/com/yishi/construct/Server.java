@@ -1,4 +1,4 @@
 package com.yishi.construct;
 
-public interface Server {
+public interface Server extends LifeCircle {
 }

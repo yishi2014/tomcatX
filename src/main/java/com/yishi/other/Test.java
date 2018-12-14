@@ -1,7 +1,6 @@
 package com.yishi.other;
 
 
-import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 

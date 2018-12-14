@@ -1,13 +1,8 @@
 package com.yishi.jvm;
 
-import javax.jws.soap.SOAPBinding;
-
 public class AllocOnStack {
     public static void alloc(String name) {
-
         User user = new User(5,"hello");
-
-
         user.setName(name);
 
     }
