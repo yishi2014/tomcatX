@@ -22,17 +22,11 @@ public class JaxbBeanUtil_ {
 //        collect(map,"/",doc.getRootElement());
 //        map.forEach((a,b)-> System.out.println(b));
 
-        String pkg = "test.parts.jaxb.special.xwork";
-        String path = "C:\\Users\\YiShi\\eclipse-workspace\\test\\src\\";
+        String pkg = "com.datanew.jaxb.special.config";
+        String path = "C:\\IDEA\\dsfMaven\\src\\main\\java\\";
         String encoding="utf-8";
         String[] entityPath = {
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\item-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\itemPer-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\itemPerGoal-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\performance-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\person-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\report-xwork.xml",
-                "C:\\IDEA\\budget_st\\JavaSource\\www\\ysbz-xwork.xml"
+                "C:\\IDEA\\dsfMaven\\src\\main\\resources\\Server.xml"
         };
         Map map = batchCollect(entityPath, new HashMap());
 //        List<ElementInfo> list = new ArrayList(Arrays.asList(map.values().toArray()));

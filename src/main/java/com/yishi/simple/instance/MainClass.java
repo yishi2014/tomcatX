@@ -9,12 +9,14 @@ import com.yishi.simple.instance.SimpleService;
 
 public class MainClass {
     public static void main(String[] args) {
+//        System.out.println(System.getProperty("sun.boot.class.path"));
         SimpleServer server= new SimpleServer();
         SimpleConnector connector=new SimpleConnector();
         SimpleService service=new SimpleService();
         service.setConnectors(new Connector[]{connector});
         server.setService(new Service[]{service});
         server.start();
+
     }
 
 
