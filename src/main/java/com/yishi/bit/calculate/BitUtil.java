@@ -33,11 +33,13 @@ public class BitUtil {
     //-1:1111 1111
     //1111 1111 1111 1111 1111 1111 1111 1111
     public static void main(String[] args) throws UnsupportedEncodingException {
-        System.out.println("葸".getBytes("utf16"));
-        System.out.println(Arrays.toString(getByteFromStr("db55dd64")));
-        System.out.println(new String(getByteFromStr("db00dd64"),"utf-16be"));
+//        System.out.println("葸".getBytes("utf16"));
+//        System.out.println(Arrays.toString(getByteFromStr("db55dd64")));
+//        System.out.println(new String(getByteFromStr("db00dd64"),"utf-16be"));
 //        byte b=INT_BYTES[127];
 //        byte c= (byte) (b+1);
 //        System.out.println(c);
+//        int a=0xe1111111;
+//        System.out.println((a&0xe0000000)==0xe0000000);
     }
 }

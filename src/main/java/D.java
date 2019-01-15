@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class D {
+    private List<? extends String> list=null;
+    private List<String> list1=null;
 
     public void methodAAAAAAAAAAAAAAA(){
         DDDDDDDDDDDDDDDDD d=new DDDDDDDDDDDDDDDDD();
