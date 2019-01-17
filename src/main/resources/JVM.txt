@@ -18,3 +18,8 @@
     const:->operand stack
     dup:operand stack->operand stack
 
+    aaload  :stack::<<(arrayref,index),>>value    array load reference:
+    aastore :stack::<<(arrayref,index,val)        store a reference to array
+
+
+
