@@ -25,6 +25,7 @@ public class Message {
     public  enum Type{
         STRING,FILE,IMG,ACK;
     }
+
     private Type type;
     private String content;
 

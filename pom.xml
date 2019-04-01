@@ -220,6 +220,48 @@
             <artifactId>log4j-api</artifactId>
             <version>2.11.1</version>
         </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/tesseract &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.bytedeco.javacpp-presets</groupId>-->
+            <!--<artifactId>tesseract</artifactId>-->
+            <!--<version>4.0.0-1.4.4</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.java.dev.jna</groupId>-->
+            <!--<artifactId>jna</artifactId>-->
+            <!--<version>4.1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.sourceforge.tess4j</groupId>-->
+            <!--<artifactId>tess4j</artifactId>-->
+            <!--<version>2.0.1</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>com.sun.jna</groupId>-->
+                    <!--<artifactId>jna</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baidu</groupId>-->
+            <!--<artifactId>ocr</artifactId>-->
+            <!--<version>4.10.2</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.baidu.aip/java-sdk -->
+        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.10.0</version>
+        </dependency>
+
+
+
 
 
     </dependencies>

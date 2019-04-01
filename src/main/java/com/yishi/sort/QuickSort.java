@@ -1,5 +1,6 @@
 package com.yishi.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -39,11 +40,13 @@ public class QuickSort {
 
     }
     public static void main(String[] args) {
+        int [] arr={0,1,2,3,4,5,6,7,8,9};
+
         Random random=new Random();
         int capacity=10;
-        int []arr=new int[capacity];
+//        int []arr=new int[capacity];
         for(int i=0;i<capacity;i++){
-            arr[i]=random.nextInt(100);
+            swap(arr,random.nextInt(10),random.nextInt(10));
         }
         System.out.println(Arrays.toString(arr));
         quickSort(arr, 0, arr.length - 1);
@@ -56,4 +59,8 @@ public class QuickSort {
 //            System.out.println(i^1);
 //        }
     }
+
+
+
+
 }

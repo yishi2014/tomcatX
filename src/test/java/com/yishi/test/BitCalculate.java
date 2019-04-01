@@ -15,6 +15,7 @@ public class BitCalculate {
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(Long.MAX_VALUE);
         String s=("你好；；");
         System.out.println(s.length());
         System.out.println(s.getBytes("gbk").length);

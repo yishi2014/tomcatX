@@ -15,7 +15,8 @@ import java.io.IOException;
  *  iText5可用
  */
 public class ParseHtmlTable7 {
-    public static final String DEST = "/home/yishi/html_table.pdf" ;
+//    public static final String DEST = "/home/yishi/html_table.pdf" ;
+    public static final String DEST = "C:\\Users\\YiShi\\Desktop\\htm_table.pdf" ;
     public static final String HTML = "33020118.html";
 
     public static void main(String[] args) throws IOException {
