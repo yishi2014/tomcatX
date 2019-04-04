@@ -21,7 +21,7 @@ public class InvocationHandler_ implements InvocationHandler {
     }
 
     public static void main(String[] args) {
-        Person proxy = (Person) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{Person.class}, new InvocationHandler_(new PersonImpl()));
+        Person proxy = (Person) Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[]{Person.class}, new InvocationHandler_(new PersonImpl()));
         proxy.doWork();
 
     }

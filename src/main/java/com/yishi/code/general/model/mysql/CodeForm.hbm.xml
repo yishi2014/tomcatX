@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.yishi.code.general.model.CodeForm" table="CODE_FORM">
+        <id name="guid" column="GUID">
+            <!--<generator class="sequence" >
+                <param name="sequence">CODE_FORM_GUID_SEQ</param>
+            </generator>-->
+            <generator class="uuid"></generator>
+        </id>
+        <property name="createBy" column="CREATE_BY"/>
+        <property name="createDate" column="CREATE_DATE"/>
+        <property name="createName" column="CREATE_NAME"/>
+        <property name="formType" column="FORM_TYPE"/>
+        <property name="formTable" column="FORM_TABLE"/>
+        <property name="formTablename" column="FORM_TABLENAME"/>
+        <property name="updateBy" column="UPDATE_BY"/>
+        <property name="updateDate" column="UPDATE_DATE"/>
+        <property name="updateName" column="UPDATE_NAME"/>
+        <property name="formVersion" column="FORM_VERSION"/>
+        <property name="formJson" type="java.lang.String">
+            <column name="FORM_JSON" sql-type="longtext" length="120">
+                <comment>配置属性转换成的JSON</comment>
+            </column>
+        </property>
+
+        <property name="fromStatus" column="FROM_STATUS"/>
+        <property name="formLoad" column="FORM_Load"/>
+        <property name="isTree" column="IS_TREE"/>
+        <property name="entityName" column="ENTITY_NAME"/>
+        <property name="datasourceJson" column="DATASOURCE_JSON"/>
+    </class>
+</hibernate-mapping>
